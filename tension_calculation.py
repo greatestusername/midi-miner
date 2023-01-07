@@ -6,6 +6,7 @@ import json
 import logging
 import math
 import os
+import shutil
 import sys
 from collections import Counter
 from typing import List, Tuple, Union
@@ -1041,7 +1042,62 @@ if __name__ == "__main__":
 
                 total_tension, diameters, centroid_diff, key_name, key_change_time, key_change_bar, key_change_name, new_output_foler = result
 
+                match key_name:
+                    case "C major":
+                        mik_name = "8B"
+                    case "G major":
+                        mik_name = "9B"
+                    case "D major":
+                        mik_name = "10B"
+                    case "A major":
+                        mik_name = "11B"
+                    case "E major":
+                        mik_name = "12B"
+                    case "B major":
+                        mik_name = "1B"
+                    case "G- major":
+                        mik_name = "2B"
+                    case "D- major":
+                        mik_name = "3B"
+                    case "A- major":
+                        mik_name = "4B"
+                    case "E- major":
+                        mik_name = "5B"
+                    case "B- major":
+                        mik_name = "6B"
+                    case "F major":
+                        mik_name = "7B"
+                    case "A minor":
+                        mik_name = "8A"
+                    case "E minor":
+                        mik_name = "9A"
+                    case "B minor":
+                        mik_name = "10A"
+                    case "F# minor":
+                        mik_name = "11A"
+                    case "C# minor":
+                        mik_name = "12A"
+                    case "G# minor":
+                        mik_name = "1A"
+                    case "E- minor":
+                        mik_name = "2A"
+                    case "B- minor":
+                        mik_name = "3A"
+                    case "F minor":
+                        mik_name = "4A"
+                    case "C minor":
+                        mik_name = "5A"
+                    case "G minor":
+                        mik_name = "6A"
+                    case "D minor":
+                        mik_name = "7A"
+
             print(f'file name {file_name}, calculated key name {key_name}')
+            key_file_name = os.path.dirname(file_name) + "/" + mik_name + "-" + os.path.basename(file_name)
+            print(f'key_file_name is: {key_file_name} and file_name is: {file_name} and mik_name is: {mik_name}') 
+            shutil.copy(file_name, key_file_name)
+                
+
             print(
                 f'if the calculated key name is not correct, you can set the key name by -n parameter')
 
